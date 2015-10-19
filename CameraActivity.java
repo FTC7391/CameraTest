@@ -1,3 +1,5 @@
+package com.example.mohan.cameraactivity;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
@@ -59,8 +61,47 @@ public class CameraActivity extends Activity {
             int height = thumbnail.getHeight();
             for(int i=0; i<pixels.length;i++){
                 color[i] = new Colered(getRed(pixels[i]),getBlue(pixels[i]),getGreen(pixels[i]));
+                System.out.print(color[i].red + " ");
             }
 
+
+
+
+            for (int i = 0; i < height; i++) {
+                for (int z = 0; z < width; z++) {
+                    System.out.println(String.format("0x%8s", Integer.toHexString(pixels[i])).replace(' ', '0'));
+
+                }
+                System.out.print("\n");
+            }
+            System.out.print("\n\n\n");
+
+            
+            /*int indice=-1;
+            int greatest = -1;
+            for(int i=0;i<length-1;i++){
+                if(color[i].red> greatest){
+                    greatest = color[i].red;
+                    indice = i;
+                }
+
+
+            }
+            System.out.println("height" + height);
+            System.out.println("width" + width);
+            System.out.println("length" + length);
+
+
+            System.out.println("indice" + indice);
+            int preanswer = indice/height;
+            int answer = (int) Math.ceil( (double)preanswer);
+            System.out.println("answer" + answer);
+
+            if(answer>width/2){
+                System.out.println("Right");
+            }else{
+                System.out.println("Left");
+            }
             for(int i=0;i<width;i++){
                 for(int z=0;z<height;z++) {
                     System.out.print(color[i].red+ " ");
@@ -69,16 +110,23 @@ public class CameraActivity extends Activity {
             }
 
             int gap = findGap(color,length,width,height);
+            System.out.println("width" + width);
+            System.out.println("height" + height);
+            if(gap>width/2){
+                System.out.println("\n\n\n\n\n " + "right");
+            }*/
 
-            System.out.println("\n\n\n\n\n " + gap);
 
-           // getArrays(color,length,width,height);
+            //getArrays(color,length,width,height);
+            //printArray(pixels,width,height,"none");
 
 
 
         }
 
     }
+
+
 
     public static int findGap(Colered [] array, int length,int width, int height){
         int greatest = 0;
@@ -97,7 +145,7 @@ public class CameraActivity extends Activity {
             System.out.println(i + "  " + array[i*z].red);
 
         }
-        System.out.println("\n\n\n\n" + array[gap].red + "\n\n" + array[gap-height].red + "\n\n" + array[gap + height].red);
+        System.out.println("\n\n\n\n" + array[gap].red);
         return gap;
 
     }
@@ -120,6 +168,9 @@ public class CameraActivity extends Activity {
         int [] redArray = new int[length];
         int [] blueArray = new int[length];
         int [] greenArray = new int[length];
+        int indice = 0;
+        int greatest = -1;
+
 
         for(int i=0;i<length;i++){
             redArray[i] = array[i].red;
@@ -129,10 +180,35 @@ public class CameraActivity extends Activity {
         CameraActivity activity = new CameraActivity();
 
         activity.printArray(redArray, width, height, "red");
+
+        /*for(int i=0;i<length-1;i++){
+            if(redArray[i]> greatest){
+                greatest = redArray[i];
+                indice = i;
+            }
+
+
+        }
+        System.out.println("height" + height);
+        System.out.println("width" + width);
+        System.out.println("length" + length);
+
+
+        /*System.out.println("indice" + indice);
+        int preanswer = indice/height;
+        int answer = (int) Math.ceil( (double)preanswer);
+        System.out.println("answer" + answer);
+
+        if(answer>width/2){
+            System.out.println("Right");
+        }else{
+            System.out.println("Left");
+        }*/
+
         SystemClock.sleep(7000);
-        activity.printArray(blueArray, width, height, "blue");
+       activity.printArray(blueArray, width, height, "blue");
         SystemClock.sleep(7000);
-        activity.printArray(greenArray, width, height, "green");
+       activity.printArray(greenArray, width, height, "green");
         SystemClock.sleep(7000);
 
 
